@@ -1,0 +1,20 @@
+{% extends 'main.html' %} {% block title %} User Login {% endblock title %} {% block style %}
+<link rel="stylesheet" type="text/css" href="../media/css/login.css" />
+{% endblock style %} {% block content %}
+<div class="container">
+    <div class="form-contaiiner">
+        <h1>Login</h1>
+        <p>If you don’t have an account register</p>
+        <p>You can <a href="{% url 'user_register' %}"><span>Register here !</span></a></p>
+        <form class="form-group" method="POST">
+            {% csrf_token %}
+            <label for="username">Username</label>
+            <input name="username" class="form-control" type="text" placeholder="Enter username here" />
+            <label for="password">Password</label>
+            <input name="password" type="password" class="form-control" placeholder="Enter password here" />
+            <button type="submit" class="btn-login form-control">Login</button>
+        </form>
+    </div>
+    <div class="img-container"></div>
+</div>
+{% endblock content %}

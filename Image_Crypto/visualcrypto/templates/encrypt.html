@@ -1,0 +1,89 @@
+{% extends "main.html" %}
+{% block title %}Encrypt your File{% endblock title %}{% block style %}
+<link rel="stylesheet" type="text/css" href="../media/css/encrypt.css" />
+{% endblock style %}
+{% block content %}
+<div class="container">
+    <div class="sub-container">
+        <form class="form-group" method='POST' enctype='multipart/form-data'>
+            {% csrf_token %}
+            <div class="input-div" id="fileUploadDiv">
+                <svg class="fa-solid-cloud-upload-alt" width="120" height="96" viewBox="0 0 120 96" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M100.8 42.4875C101.569 40.4813 102 38.2875 102 36C102 26.0625 93.9375 18 84 18C80.3063 18 76.8563 19.125 74.0063 21.0375C68.8125 12.0375 59.1188 6 48 6C31.425 6 18 19.425 18 36C18 36.5063 18.0187 37.0125 18.0375 37.5188C7.5375 41.2125 0 51.225 0 63C0 77.9062 12.0938 90 27 90H96C109.256 90 120 79.2562 120 66C120 54.3937 111.75 44.7 100.8 42.4875ZM73.7625 54H61.5V75C61.5 76.65 60.15 78 58.5 78H49.5C47.85 78 46.5 76.65 46.5 75V54H34.2375C31.5563 54 30.225 50.775 32.1188 48.8813L51.8813 29.1188C53.0438 27.9563 54.9562 27.9563 56.1187 29.1188L75.8813 48.8813C77.775 50.775 76.425 54 73.7625 54Z"
+                        fill="#5E9BFF" />
+                </svg>
+                <div class="choose-file" hidden>Selected File</div>
+                <span class="file-name" hidden></span>
+                <label class="input-group-text" for='file'>Drag and Drop <br /> OR<br /> Click anywhere to upload your
+                    file </label>
+                <input class="form-control" type='file' name='file' id="fileInput" hidden />
+                <button class="submit-btn" type='submit'>Upload</button>
+            </div>
+            <br />
+
+        </form>
+    </div>
+    {% if key_img %}
+    <div class="sub-container-2">
+        <h4>These images are very important because we will use this image for decrypting the file</h4>
+        <img src="../media/assets/dummy.gif" alt="" width="300" height="300">
+        <a class="btn btn-secondary submit-btn" href={{key_img}} download>Download image</a>
+        <br />
+    </div>
+    {% endif %}
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var fileInput = document.getElementById('fileInput');
+        var fileUploadDiv = document.getElementById('fileUploadDiv');
+        var chooseFileDiv = document.querySelector('.choose-file');
+        var fileNameSpan = document.querySelector('.file-name');
+
+        fileUploadDiv.addEventListener('click', function () {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', function () {
+            // Handle selected file
+            var selectedFile = fileInput.files[0];
+            if (selectedFile) {
+                chooseFileDiv.textContent = 'Selected File:';
+                fileNameSpan.textContent = selectedFile.name;
+                chooseFileDiv.hidden = false;
+                fileNameSpan.hidden = false;
+            }
+        });
+
+        // Add drag-and-drop functionality
+        fileUploadDiv.addEventListener('dragover', function (e) {
+            e.preventDefault();
+            fileUploadDiv.classList.add('dragover');
+        });
+
+        fileUploadDiv.addEventListener('dragleave', function () {
+            fileUploadDiv.classList.remove('dragover');
+        });
+
+        fileUploadDiv.addEventListener('drop', function (e) {
+            e.preventDefault();
+            fileUploadDiv.classList.remove('dragover');
+
+            // Handle dropped files
+            var droppedFiles = e.dataTransfer.files;
+
+            // You can process the dropped files as needed
+            if (droppedFiles.length > 0) {
+                fileInput.files = droppedFiles;
+                chooseFileDiv.textContent = 'Selected File:';
+                fileNameSpan.textContent = droppedFiles[0].name;
+                chooseFileDiv.hidden = false;
+                fileNameSpan.hidden = false;
+            }
+        });
+    });
+</script>
+
+
+{% endblock content %}

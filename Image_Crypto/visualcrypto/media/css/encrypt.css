@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  background-color: #fffefc;
+}
+
+.sub-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  border-style: dashed;
+  border-color: #000000;
+  border-width: 1px;
+  width: 360px;
+  height: 462px;
+}
+label {
+  color: #000000;
+  text-align: center;
+  font: 400 20px "Inter", sans-serif;
+  width: 180px;
+  margin-bottom: 50px;
+}
+.choose-file {
+  color: #000000;
+  text-align: center;
+  font: 400 20px "Inter", sans-serif;
+  width: 180px;
+}
+input {
+  background: #ff432a;
+  border-radius: 32px;
+  width: 256px;
+  height: 53px;
+  color: #ffffff;
+  text-align: center;
+  font: 500 17px "Poppins", sans-serif;
+}
+
+.submit-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ff432a;
+  border-radius: 32px;
+  border: 0;
+  width: 256px;
+  height: 53px;
+  color: #ffffff;
+  text-align: center;
+  font: 500 17px "Poppins", sans-serif;
+}
+.sub-container-2 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h4 {
+  color: #ff432a;
+  text-align: center;
+  font: 400 20px "Poppins", sans-serif;
+  width: 500px;
+}
